@@ -1,7 +1,11 @@
 import os
 
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+
+load_dotenv()  # loads .env file into os.environ for DB connection info
+    
 
 # Pulled from environment variables rather than hardcoded, so the same
 # code runs unchanged whether it's pointed at RDS in AWS or a local MySQL

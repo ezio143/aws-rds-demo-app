@@ -1,6 +1,6 @@
 import enum
 import uuid
-from datetime import datetime
+from datetime import datetime,timezone
 
 from sqlalchemy import Column, DateTime, Enum, String
 from sqlalchemy.dialects.mysql import CHAR
@@ -23,5 +23,5 @@ class Order(Base):
     customer_name = Column(String(120), nullable=False)
     item_description = Column(String(255), nullable=False)
     status = Column(Enum(OrderStatus), default=OrderStatus.placed, nullable=False)
-    created_at = Column(DateTime, default=datetime.timezone.utc)
-    updated_at = Column(DateTime, default=datetime.timezone.utc, onupdate=datetime.timezone.utc)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc), nullable=False)
+    updated_at = Column(DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc), nullable=False)
